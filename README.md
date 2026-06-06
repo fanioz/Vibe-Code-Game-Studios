@@ -170,6 +170,10 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/fanioz/Vibe-Code-Game-St
    - `/setup-engine godot 4.6` — configure your engine if you already know
    - `/project-stage-detect` — analyze an existing project
 
+### Codex Support
+
+If you're using Codex instead of Claude Code, start with [CODEX.md](CODEX.md). It maps the same agent, skill, hook, and collaboration system onto Codex-friendly instructions.
+
 ## Upgrading
 
 Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
