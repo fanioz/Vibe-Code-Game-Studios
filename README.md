@@ -147,7 +147,7 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
 **Option A: Install into an existing project (One-liner)**
 Run this in the root of your existing project directory to install the AI studio kit:
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/fanioz/Vibe-Code-Game-Studios/main/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/fanioz/Vibe-Code-Game-Studios/main/install.sh | bash
 ```
 
 **Option B: Start a new project from scratch**
