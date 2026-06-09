@@ -1,0 +1,1 @@
+../../.claude/skills/smoke-check/SKILL.md

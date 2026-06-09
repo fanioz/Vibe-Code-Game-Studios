@@ -1,0 +1,1 @@
+../../.claude/skills/architecture-decision/SKILL.md

@@ -1,0 +1,1 @@
+../../.claude/skills/create-architecture/SKILL.md

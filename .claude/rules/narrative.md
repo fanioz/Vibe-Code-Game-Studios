@@ -2,6 +2,9 @@
 paths:
   - "design/narrative/**"
 ---
+globs:
+  - "design/narrative/**"
+---
 
 # Narrative Rules
 

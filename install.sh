@@ -29,7 +29,7 @@ git clone --depth 1 --quiet "$REPO" "$TMPDIR"
 # Backup existing setup (if any)
 # ══════════════════════════════════════════════════════
 HAS_EXISTING=false
-if [ -d ".claude" ] || [ -f "CLAUDE.md" ] || [ -d "CCGS Skill Testing Framework" ] || [ -d "design" ] || [ -d "docs" ] || [ -d "production" ]; then
+if [ -d ".claude" ] || [ -d ".agents" ] || [ -f "CLAUDE.md" ] || [ -d "CCGS Skill Testing Framework" ] || [ -d "design" ] || [ -d "docs" ] || [ -d "production" ]; then
   HAS_EXISTING=true
   echo -e "  ${YELLOW}Existing setup detected.${NC} Backing up..."
   mkdir -p "$BACKUP_DIR"
@@ -43,6 +43,7 @@ if [ -d ".claude" ] || [ -f "CLAUDE.md" ] || [ -d "CCGS Skill Testing Framework"
 
   # Back up directories
   [ -d ".claude" ] && cp -R .claude "$BACKUP_DIR/.claude" && echo -e "    ${YELLOW}Backed up${NC} .claude/"
+  [ -d ".agents" ] && cp -R .agents "$BACKUP_DIR/.agents" && echo -e "    ${YELLOW}Backed up${NC} .agents/"
   
   # Back up root files
   [ -f "CLAUDE.md" ] && cp CLAUDE.md "$BACKUP_DIR/CLAUDE.md" && echo -e "    ${YELLOW}Backed up${NC} CLAUDE.md"
@@ -63,7 +64,7 @@ if [ -d ".claude" ] || [ -f "CLAUDE.md" ] || [ -d "CCGS Skill Testing Framework"
   
   # Clean slate for main kit directories to ensure clean install, 
   # but be careful not to delete user source code if this is an active project
-  rm -rf .claude "CCGS Skill Testing Framework" design docs production
+  rm -rf .claude .agents "CCGS Skill Testing Framework" design docs production
   [ -f "CLAUDE.md" ] && rm CLAUDE.md
 fi
 

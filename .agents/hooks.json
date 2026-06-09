@@ -1,0 +1,49 @@
+{
+  "validate-commands": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .agents/hooks/antigravity-wrapper.sh validate-commit.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "bash .agents/hooks/antigravity-wrapper.sh validate-push.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "validate-files": {
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .agents/hooks/antigravity-wrapper.sh validate-assets.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash .agents/hooks/antigravity-wrapper.sh validate-skill-change.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "session-stop": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "bash .agents/hooks/antigravity-wrapper.sh session-stop.sh",
+        "timeout": 10
+      }
+    ]
+  }
+}

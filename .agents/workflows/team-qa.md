@@ -1,0 +1,1 @@
+../../.claude/skills/team-qa/SKILL.md

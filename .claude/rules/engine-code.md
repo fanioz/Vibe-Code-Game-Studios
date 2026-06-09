@@ -2,6 +2,9 @@
 paths:
   - "src/core/**"
 ---
+globs:
+  - "src/core/**"
+---
 
 # Engine Code Rules
 

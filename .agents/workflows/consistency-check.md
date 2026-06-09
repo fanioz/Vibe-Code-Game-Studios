@@ -1,0 +1,1 @@
+../../.claude/skills/consistency-check/SKILL.md

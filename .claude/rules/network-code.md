@@ -2,6 +2,9 @@
 paths:
   - "src/networking/**"
 ---
+globs:
+  - "src/networking/**"
+---
 
 # Network Code Rules
 

@@ -2,6 +2,9 @@
 paths:
   - "assets/shaders/**"
 ---
+globs:
+  - "assets/shaders/**"
+---
 
 # Shader Code Standards
 

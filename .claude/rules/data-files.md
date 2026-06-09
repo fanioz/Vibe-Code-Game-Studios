@@ -2,6 +2,9 @@
 paths:
   - "assets/data/**"
 ---
+globs:
+  - "assets/data/**"
+---
 
 # Data File Rules
 

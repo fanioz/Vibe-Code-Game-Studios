@@ -2,6 +2,9 @@
 paths:
   - "src/gameplay/**"
 ---
+globs:
+  - "src/gameplay/**"
+---
 
 # Gameplay Code Rules
 

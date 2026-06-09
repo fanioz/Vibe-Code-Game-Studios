@@ -1,0 +1,1 @@
+../../.claude/skills/test-setup/SKILL.md

@@ -1,0 +1,1 @@
+../../.claude/skills/review-all-gdds/SKILL.md

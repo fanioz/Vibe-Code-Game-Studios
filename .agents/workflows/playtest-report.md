@@ -1,0 +1,1 @@
+../../.claude/skills/playtest-report/SKILL.md

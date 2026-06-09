@@ -1,0 +1,16 @@
+{
+  "name": "vibe-code-game-studios",
+  "version": "1.0.0",
+  "description": "Game studio architecture managed through coordinated AI subagents and skills.",
+  "author": {
+    "name": "Donchitos"
+  },
+  "keywords": [
+    "game-development",
+    "agents",
+    "skills",
+    "godot",
+    "unity",
+    "unreal"
+  ]
+}

@@ -1,0 +1,1 @@
+../../.claude/skills/bug-report/SKILL.md

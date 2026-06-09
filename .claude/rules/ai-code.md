@@ -2,6 +2,9 @@
 paths:
   - "src/ai/**"
 ---
+globs:
+  - "src/ai/**"
+---
 
 # AI Code Rules
 

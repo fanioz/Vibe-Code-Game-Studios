@@ -1,0 +1,1 @@
+../../.claude/skills/gate-check/SKILL.md

@@ -1,0 +1,1 @@
+../../.claude/skills/soak-test/SKILL.md

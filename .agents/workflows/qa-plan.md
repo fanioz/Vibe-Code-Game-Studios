@@ -1,0 +1,1 @@
+../../.claude/skills/qa-plan/SKILL.md

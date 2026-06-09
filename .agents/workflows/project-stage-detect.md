@@ -1,0 +1,1 @@
+../../.claude/skills/project-stage-detect/SKILL.md

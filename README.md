@@ -1,9 +1,11 @@
 <p align="center">
   <h1 align="center">Claude Code Game Studios</h1>
   <p align="center">
-    Turn a single Claude Code session into a full game development studio.
+    Turn a single AI CLI session into a full game development studio.
     <br />
-    49 agents. 73 skills. One coordinated AI team.
+    49 agents. 73 skills/workflows. One coordinated AI team.
+    <br />
+    <b>Now supporting both Claude Code and Google Antigravity!</b>
   </p>
 </p>
 
@@ -14,6 +16,7 @@
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-12-orange" alt="12 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
+  <img src="https://img.shields.io/badge/built%20for-Google%20Antigravity-4285F4?logo=google" alt="Built for Google Antigravity">
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20this%20project-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
   <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-Support%20this%20project-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
 </p>
@@ -137,7 +140,7 @@ Type `/` in Claude Code to access all 73 skills:
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
+- **Claude Code** (`npm install -g @anthropic-ai/claude-code`) OR **Google Antigravity** ([Installation Guide](https://antigravity.google/docs/cli-install))
 - **Recommended**: [jq](https://jqlang.github.io/jq/) (for hook validation) and Python 3 (for JSON validation)
 
 All hooks fail gracefully if optional tools are missing — nothing breaks, you just lose validation.
@@ -157,9 +160,11 @@ curl -fsSL https://raw.githubusercontent.com/fanioz/Vibe-Code-Game-Studios/main/
    cd my-game
    ```
 
-2. **Open Claude Code** and start a session:
+2. **Open your AI CLI** and start a session:
    ```bash
-   claude
+   claude  # If using Claude Code
+   # OR
+   agy     # If using Google Antigravity
    ```
 
 3. **Run `/start`** — the system asks where you are (no idea, vague concept,
@@ -183,17 +188,20 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 ## Project Structure
 
 ```
-CLAUDE.md                           # Master configuration
-.claude/
+CLAUDE.md                           # Master configuration (Claude Code)
+GEMINI.md                           # Master configuration (Antigravity)
+.claude/                            # Configuration for Claude Code
   settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 49 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 73 slash commands (subdirectory per skill)
-  hooks/                            # 12 hook scripts (bash, cross-platform)
+  agents/                           # 49 agent definitions
+  skills/                           # 73 slash commands
+  hooks/                            # 12 hook scripts
   rules/                            # 11 path-scoped coding standards
-  statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
-  docs/
-    workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
-    templates/                      # 41 document templates
+.agents/                            # Native configuration for Google Antigravity
+  plugin.json                       # Antigravity plugin definition
+  hooks.json                        # Translated schema for Antigravity hooks
+  workflows/                        # Symlinks back to Claude skills for slash-command support
+  rules/                            # Synced rules using 'globs:' frontmatter
+  hooks/                            # Wrapper scripts translating JSON contracts
 src/                                # Game source code
 assets/                             # Art, audio, VFX, shaders, data files
 design/                             # GDDs, narrative docs, level designs

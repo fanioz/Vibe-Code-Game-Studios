@@ -1,0 +1,1 @@
+../../.claude/skills/art-bible/SKILL.md

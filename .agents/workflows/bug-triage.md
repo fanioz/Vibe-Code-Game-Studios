@@ -1,0 +1,1 @@
+../../.claude/skills/bug-triage/SKILL.md

@@ -1,0 +1,1 @@
+../../.claude/skills/reverse-document/SKILL.md

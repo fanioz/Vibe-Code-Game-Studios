@@ -2,6 +2,9 @@
 paths:
   - "tests/**"
 ---
+globs:
+  - "tests/**"
+---
 
 # Test Standards
 

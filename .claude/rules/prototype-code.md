@@ -2,6 +2,9 @@
 paths:
   - "prototypes/**"
 ---
+globs:
+  - "prototypes/**"
+---
 
 # Prototype Code Standards (Relaxed)
 

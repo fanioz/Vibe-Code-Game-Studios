@@ -2,6 +2,9 @@
 paths:
   - "src/ui/**"
 ---
+globs:
+  - "src/ui/**"
+---
 
 # UI Code Rules
 

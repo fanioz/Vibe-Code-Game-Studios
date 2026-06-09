@@ -2,6 +2,9 @@
 paths:
   - "design/gdd/**"
 ---
+globs:
+  - "design/gdd/**"
+---
 
 # Design Document Rules
 
