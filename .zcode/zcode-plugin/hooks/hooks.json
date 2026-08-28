@@ -1,0 +1,74 @@
+{
+  "description": "Vibe Code Game Studios hooks (ported from Claude Code settings.json). Seven ZCode events are supported; Notification/PreCompact/PostCompact/SubagentStart/SubagentStop have no ZCode equivalent and were skipped.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/session-context.sh\"",
+            "timeout": 20,
+            "statusMessage": "Loading studio session context…"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/deny-guard.sh\"",
+            "timeout": 5,
+            "statusMessage": "Deny-guard policy check…"
+          },
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/run-workspace-hook.sh\" .zcode/hooks/validate-commit.sh",
+            "timeout": 15,
+            "statusMessage": "Validating commit…"
+          },
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/run-workspace-hook.sh\" .zcode/hooks/validate-push.sh",
+            "timeout": 10,
+            "statusMessage": "Validating push…"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/run-workspace-hook.sh\" .zcode/hooks/validate-assets.sh",
+            "timeout": 10,
+            "statusMessage": "Validating assets…"
+          },
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/validate-skill-change.sh\"",
+            "timeout": 5,
+            "statusMessage": "Checking skill change…"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${ZCODE_PLUGIN_ROOT}/hooks/run-workspace-hook.sh\" .zcode/hooks/session-stop.sh",
+            "timeout": 10,
+            "statusMessage": "Logging session summary…"
+          }
+        ]
+      }
+    ]
+  }
+}

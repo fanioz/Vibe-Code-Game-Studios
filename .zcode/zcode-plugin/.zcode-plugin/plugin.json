@@ -1,0 +1,7 @@
+{
+  "name": "vcgs-studio-hooks",
+  "version": "1.0.0",
+  "description": "Vibe Code Game Studios: session context, commit/push/asset/skill validation, and deny-guard hooks ported from Claude Code settings.json",
+  "author": "fanioz",
+  "license": "MIT"
+}

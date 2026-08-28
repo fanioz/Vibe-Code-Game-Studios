@@ -1,0 +1,14 @@
+{
+  "name": "vcgs-local",
+  "description": "Local ZCode plugin marketplace for the Vibe Code Game Studios repository",
+  "plugins": [
+    {
+      "name": "vcgs-studio-hooks",
+      "source": "./zcode-plugin",
+      "description": "Studio session context, validation, and deny-guard hooks ported from Claude Code settings.json",
+      "version": "1.0.0",
+      "category": "developer-tools",
+      "tags": ["hooks", "validation", "game-studio"]
+    }
+  ]
+}
