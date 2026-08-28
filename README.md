@@ -179,6 +179,17 @@ curl -fsSL https://raw.githubusercontent.com/fanioz/Vibe-Code-Game-Studios/main/
 
 If you're using Codex instead of Claude Code, start with [CODEX.md](CODEX.md). It maps the same agent, skill, hook, and collaboration system onto Codex-friendly instructions.
 
+### ZCode Support
+
+If you're using [ZCode](https://zcode.z.ai) (Z.ai's agentic development environment for GLM-5.3), the `.zcode/` folder carries the full studio system — no Claude Code installation required:
+
+- **Subagents (49)** — load automatically from `.zcode/agents/` with ZCode-native frontmatter (`model: inherit` follows your selected model)
+- **Skills (73)** — workspace skills at `.zcode/skills/`; invoke with `$skill-name` (they also appear in the `/` panel's Skills group, replacing Claude Code's slash commands)
+- **Hooks** — ZCode ignores project-level hook configs for security, so the studio hooks ship as the `vcgs-studio-hooks` plugin. One-time install: **Settings → Plugins → Create → Add marketplace** → pick this repo's `.zcode` folder → install **vcgs-studio-hooks**. This restores session context, commit/push/asset validation, and the deny-guard that enforces the safety rules from Claude Code's `settings.json`
+- **`AGENTS.md`** — ZCode's entry point (it reads `AGENTS.md`, not `CLAUDE.md`, and does not expand `@import` references)
+
+See [.zcode/README.md](.zcode/README.md) for the full Claude Code → ZCode feature mapping and setup details.
+
 ## Upgrading
 
 Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
@@ -189,6 +200,7 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 
 ```
 CLAUDE.md                           # Master configuration (Claude Code)
+AGENTS.md                           # Master configuration (ZCode)
 GEMINI.md                           # Master configuration (Antigravity)
 .claude/                            # Configuration for Claude Code
   settings.json                     # Hooks, permissions, safety rules
@@ -196,6 +208,13 @@ GEMINI.md                           # Master configuration (Antigravity)
   skills/                           # 73 slash commands
   hooks/                            # 12 hook scripts
   rules/                            # 11 path-scoped coding standards
+.zcode/                             # Configuration for ZCode (Z.ai, GLM-5.3)
+  agents/                           # 49 agent definitions (ZCode frontmatter)
+  skills/                           # 73 skills, workspace-level
+  hooks/                            # 12 hook scripts (live copies)
+  zcode-plugin/                     # vcgs-studio-hooks plugin (required for hooks)
+  marketplace.json                  # Local plugin marketplace manifest
+  README.md                         # ZCode setup, mapping, and install notes
 .agents/                            # Native configuration for Google Antigravity
   plugin.json                       # Antigravity plugin definition
   hooks.json                        # Translated schema for Antigravity hooks
