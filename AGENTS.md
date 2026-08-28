@@ -3,9 +3,10 @@
 Indie game development managed through 49 coordinated studio subagents.
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 
-> This file is the ZCode entry point (ZCode reads `AGENTS.md`, not `CLAUDE.md`,
-> and does not expand `@import` references). Claude Code users: see `CLAUDE.md`.
-> The two files describe the same system.
+> This file is the agent entry point for tools that read `AGENTS.md`
+> (**ZCode**, **OpenCode**). It contains no `@import` directives — tools that
+> don't expand imports still work. Claude Code users: see `CLAUDE.md`.
+> All files describe the same studio system.
 
 ## Technology Stack
 
@@ -25,15 +26,17 @@ Read tool at the start of a relevant task:
 
 | Topic | File |
 |---|---|
-| Project structure | `.zcode/docs/directory-structure.md` |
+| Project structure | `.claude/docs/directory-structure.md` (also mirrored under `.zcode/docs/`) |
 | Engine version reference | `docs/engine-reference/godot/VERSION.md` |
-| Technical preferences | `.zcode/docs/technical-preferences.md` |
-| Coordination rules | `.zcode/docs/coordination-rules.md` |
-| Coding standards | `.zcode/docs/coding-standards.md` |
-| Context management | `.zcode/docs/context-management.md` |
-| Domain rules (code/data/design/audio/tests) | `.zcode/rules/<domain>.md` |
+| Technical preferences | `.claude/docs/technical-preferences.md` |
+| Coordination rules | `.claude/docs/coordination-rules.md` |
+| Coding standards | `.claude/docs/coding-standards.md` |
+| Context management | `.claude/docs/context-management.md` |
+| Domain rules (code/data/design/audio/tests) | `.claude/rules/<domain>.md` |
 
-Claude Code equivalents live under `.claude/` with identical content.
+`.zcode/` mirrors `docs/` and `rules/` for self-containment (ZCode has no
+Claude-compatible scan). `.claude/` is the single source of truth for
+OpenCode and Claude Code.
 
 ## Collaboration Protocol
 
@@ -53,8 +56,15 @@ See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for the full protocol and examples.
 
 ## Studio System Layout
 
-- **Subagents**: `.zcode/agents/*.md` (49 roles) — ZCode workspace subagents;
+- **Subagents**: `.zcode/agents/*.md` (49) — ZCode workspace subagents;
+  `.opencode/agents/*.md` (49) — OpenCode subagents (`@producer` to invoke);
   `.claude/agents/` is the Claude Code source of truth
-- **Skills**: `.zcode/skills/<name>/SKILL.md` — invoke with `$skill-name` in ZCode
-- **Hooks**: delivered through the `vcgs-studio-hooks` plugin
-  (`.zcode/zcode-plugin/`); scripts live in `.zcode/hooks/`
+- **Skills**: single source `.claude/skills/` — Claude Code runs them as
+  `/` commands, OpenCode scans the same folder natively (verified at runtime;
+  just ask for the workflow by name), ZCode needs its own mirror at
+  `.zcode/skills/` (invoke `$skill-name`) because it has no Claude-compatible scan
+- **Hooks**: ZCode → `vcgs-studio-hooks` plugin (`.zcode/zcode-plugin/`);
+  OpenCode → `.opencode/plugins/hooks.ts` (auto-loaded); scripts live in
+  `.zcode/hooks/` and `.opencode/hooks/`
+- **Permissions**: OpenCode → `.opencode/opencode.json` (deny rules ported
+  from `.claude/settings.json`); ZCode → deny-guard hook in the plugin
