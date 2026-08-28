@@ -190,6 +190,18 @@ If you're using [ZCode](https://zcode.z.ai) (Z.ai's agentic development environm
 
 See [.zcode/README.md](.zcode/README.md) for the full Claude Code → ZCode feature mapping and setup details.
 
+### OpenCode Support
+
+If you're using [OpenCode](https://opencode.ai), the `.opencode/` folder carries the studio system with OpenCode-native configuration:
+
+- **Subagents (49)** — `.opencode/agents/` with converted frontmatter (`mode: subagent`, `permission` block); invoke with `@agent-name` or let the primary delegate. No `model:` is set, so subagents inherit your selected model (Claude Code's `model: opus/sonnet` has no OpenCode equivalent)
+- **Skills (73)** — single source in `.claude/skills/`: OpenCode scans the project's `.claude/skills/` natively (Claude-compatible path), verified at runtime. Just ask for the workflow by name; the `skill` tool loads it on demand
+- **Hooks** — `.opencode/plugins/hooks.ts` (auto-loaded) bridges Claude Code hook semantics to OpenCode's plugin API: session context, commit/push/asset validation, compaction notes, and notifications
+- **Permissions** — `.opencode/opencode.json` ports the deny rules from Claude Code's `settings.json` (`rm -rf`, force push, `git reset --hard`, `sudo`, `.env` reads/writes, …) plus the read-only git allow list
+- **`AGENTS.md`** — OpenCode reads `AGENTS.md` at the workspace root for project rules
+
+See [.opencode/README.md](.opencode/README.md) for the full Claude Code → OpenCode feature mapping.
+
 ## Upgrading
 
 Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
@@ -200,7 +212,7 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 
 ```
 CLAUDE.md                           # Master configuration (Claude Code)
-AGENTS.md                           # Master configuration (ZCode)
+AGENTS.md                           # Master configuration (ZCode & OpenCode)
 GEMINI.md                           # Master configuration (Antigravity)
 .claude/                            # Configuration for Claude Code
   settings.json                     # Hooks, permissions, safety rules
@@ -215,6 +227,12 @@ GEMINI.md                           # Master configuration (Antigravity)
   zcode-plugin/                     # vcgs-studio-hooks plugin (required for hooks)
   marketplace.json                  # Local plugin marketplace manifest
   README.md                         # ZCode setup, mapping, and install notes
+.opencode/                          # Configuration for OpenCode
+  agents/                           # 49 agent definitions (OpenCode frontmatter)
+  hooks/                            # 12 hook scripts (live copies)
+  plugins/hooks.ts                  # Plugin bridging Claude Code hook semantics
+  opencode.json                     # Permission rules ported from settings.json
+  README.md                         # OpenCode setup, mapping, and notes
 .agents/                            # Native configuration for Google Antigravity
   plugin.json                       # Antigravity plugin definition
   hooks.json                        # Translated schema for Antigravity hooks
